@@ -1,13 +1,42 @@
 const express = require("express");
-const dotenv = require("dotenv").config();
+require("dotenv").config();
 const app = express();
 const connectDB = require("./configs/mongoose");
 const connectCloudinary = require("./configs/cloudinary");
 const cors = require("cors");
+
+// CORS configuration - allow multiple origins
+const allowedOrigins = [
+  "http://localhost:5173",
+  "https://farmer-friend-fbw2atc3l-nitesh-patels-projects-91f8139b.vercel.app",
+  process.env.FRONTEND_URL_PROD
+].filter(Boolean);
+
 app.use(cors({
-  origin: "https://farmer-friend-fbw2atc3l-nitesh-patels-projects-91f8139b.vercel.app/",
+  origin: function (origin, callback) {
+    // Allow requests with no origin (like mobile apps or curl requests)
+    if (!origin) return callback(null, true);
+    
+    // Remove trailing slash from origin for comparison
+    const normalizedOrigin = origin.replace(/\/$/, '');
+    
+    // Check if the origin is in the allowed list (with or without trailing slash)
+    const isAllowed = allowedOrigins.some(allowed => {
+      const normalizedAllowed = allowed.replace(/\/$/, '');
+      return normalizedOrigin === normalizedAllowed;
+    });
+    
+    if (isAllowed) {
+      callback(null, true);
+    } else {
+      callback(new Error('Not allowed by CORS'));
+    }
+  },
   credentials: true,
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+  allowedHeaders: ['Content-Type', 'Authorization']
 }));
+
 app.use(express.json());
 
 connectDB();
