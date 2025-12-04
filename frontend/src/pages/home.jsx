@@ -16,7 +16,7 @@ const Home = () => {
 
   const fetchProducts = async () => {
     try {
-      const response = await axios.get(`${backendurl}/api/product/allproducts`);
+      const response = await axios.post(`${backendurl}/api/product/listproduct`);
       const allProducts = response.data.products || [];
       setProducts(allProducts);
       // Get top 5-star products for featured section

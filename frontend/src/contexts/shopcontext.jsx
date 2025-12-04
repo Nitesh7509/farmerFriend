@@ -17,10 +17,11 @@ const ShopContextProvider = (props) => {
     try {
       const response = await axios.post(`${backendurl}/api/product/listproduct`);
       if (response.data.success) {
-        setProducts(response.data.product);
+        setProducts(response.data.products || response.data.product || []);
       }
     } catch (error) {
       console.error("Error fetching products:", error);
+      setProducts([]);
     }
   };
 

@@ -63,11 +63,11 @@ const addproduct = async (req, res) => {
     }
 }
 const listproduct = async (req, res) => {
- const product = await productModel.find().populate('farmerId', 'name email')
+ const products = await productModel.find().populate('farmerId', 'name email')
  res.json({
     success:true,
     message:"Product list",
-    product
+    products
  })
 }
 const removeproduct = async (req, res) => {
