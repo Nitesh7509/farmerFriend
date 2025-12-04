@@ -5,7 +5,7 @@ const connectDB = require("./configs/mongoose");
 const connectCloudinary = require("./configs/cloudinary");
 const cors = require("cors");
 app.use(cors({
-  origin: "http://localhost:5173",
+  origin: "https://farmer-friend-fbw2atc3l-nitesh-patels-projects-91f8139b.vercel.app/",
   credentials: true,
 }));
 app.use(express.json());
