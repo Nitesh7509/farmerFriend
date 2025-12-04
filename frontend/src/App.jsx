@@ -1,4 +1,4 @@
-import { Routes, Route } from 'react-router-dom'
+import { Routes, Route, useLocation } from 'react-router-dom'
 import Home from './pages/home'
 import About from './pages/about'
 import Contact from './pages/contact'
@@ -23,10 +23,16 @@ import Success from './pages/Success'
 export const backendurl = import.meta.env.VITE_BACKEND_URL;
 
 const App = () => {
+  const location = useLocation();
+  
+  // Pages where navbar should be hidden
+  const hideNavbarRoutes = ['/', '/login', '/signup', '/forgot-password', '/unauthorized', '/error', '/success'];
+  const hideNavbar = hideNavbarRoutes.includes(location.pathname) || location.pathname.startsWith('/reset-password');
+
   return (
     <div>
-      <Navbar />
-      <Search />
+      {!hideNavbar && <Navbar />}
+      {!hideNavbar && <Search />}
       <Routes>
         <Route path="/" element={<Signup/>} />
         <Route path="/login" element={<Login/>} />

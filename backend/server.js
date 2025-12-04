@@ -10,7 +10,6 @@ app.use(cors({
 }));
 app.use(express.json());
 
-
 connectDB();
 connectCloudinary();
 
@@ -45,14 +44,11 @@ const initAdmin = async () => {
 // Call after DB connection
 setTimeout(initAdmin, 1000);
 
-app.use(express.json())
-
 app.use("/api/user", require("./routes/userroute"));
 app.use("/api/product", require("./routes/productroute"));
 app.use("/api/order", require("./routes/orderroute"));
 app.use("/api/contact", require("./routes/contactroute"));
 app.use("/api/feedback", require("./routes/feedbackroute"));
-app.use("/api/payment", require("./routes/paymentroute"));
 
 app.get("/", (req, res) => {
     res.send("Hello World!");
