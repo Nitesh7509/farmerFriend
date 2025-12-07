@@ -248,6 +248,47 @@ const Navbar = () => {
                   </NavLink>
                 </li>
               )}
+              
+              {/* User Info & Actions */}
+              {user && (
+                <>
+                  <li className='border-t border-gray-200 mt-2 pt-2'>
+                    <div className='py-2.5 px-3 text-sm text-gray-600'>
+                      Signed in as <span className='font-semibold text-gray-800'>{user.name}</span>
+                    </div>
+                  </li>
+                  <li>
+                    <NavLink 
+                      className={({ isActive }) => 
+                        `block py-2.5 px-3 rounded-lg font-semibold transition-colors ${isActive ? 'bg-green-50 text-green-600' : 'text-gray-700 hover:bg-gray-50'}`
+                      } 
+                      to="/profile"
+                      onClick={() => setShowMobileMenu(false)}
+                    >
+                      Profile
+                    </NavLink>
+                  </li>
+                  <li>
+                    <NavLink 
+                      className={({ isActive }) => 
+                        `block py-2.5 px-3 rounded-lg font-semibold transition-colors ${isActive ? 'bg-green-50 text-green-600' : 'text-gray-700 hover:bg-gray-50'}`
+                      } 
+                      to="/orders"
+                      onClick={() => setShowMobileMenu(false)}
+                    >
+                      Orders
+                    </NavLink>
+                  </li>
+                  <li>
+                    <button 
+                      className='w-full text-left py-2.5 px-3 rounded-lg font-semibold text-red-600 hover:bg-red-50 transition-colors'
+                      onClick={handleLogout}
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </>
+              )}
             </ul>
           </nav>
         </div>

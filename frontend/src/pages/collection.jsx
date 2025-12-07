@@ -144,17 +144,28 @@ const Collection = () => {
             {/* Products Grid */}
             {filter.length > 0 ? (
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-                {filter.map((product) => (
-                  <ProductItem
-                    key={product._id}
-                    name={product.name}
-                    price={product.price}
-                    image={product.image}
-                    id={product._id}
-                    stock={product.stock}
-                    farmerName={product.farmerId?.name}
-                  />
-                ))}
+                {filter.map((product) => {
+                  // Debug log
+                  console.log('Product data:', {
+                    name: product.name,
+                    farmerId: product.farmerId,
+                    farmerName: product.farmerId?.name,
+                    farmerVerified: product.farmerId?.verified
+                  });
+                  
+                  return (
+                    <ProductItem
+                      key={product._id}
+                      name={product.name}
+                      price={product.price}
+                      image={product.image}
+                      id={product._id}
+                      stock={product.stock}
+                      farmerName={product.farmerId?.name}
+                      farmerVerified={product.farmerId?.verified}
+                    />
+                  );
+                })}
               </div>
             ) : (
               <div className="bg-white rounded-lg shadow-md p-12 text-center">

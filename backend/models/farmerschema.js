@@ -6,6 +6,7 @@ const farmerSchema = new mongoose.Schema({
     password: String,
     phone: String,
     address: String,
+    verified: { type: Boolean, default: true }, // Auto-verify farmers on registration
     resetPasswordToken: String,
     resetPasswordExpire: Date,
     createdAt: { type: Date, default: Date.now },

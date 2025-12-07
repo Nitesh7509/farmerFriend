@@ -63,7 +63,7 @@ const addproduct = async (req, res) => {
     }
 }
 const listproduct = async (req, res) => {
- const products = await productModel.find().populate('farmerId', 'name email')
+ const products = await productModel.find().populate('farmerId', 'name email verified')
  res.json({
     success:true,
     message:"Product list",
@@ -79,7 +79,7 @@ const removeproduct = async (req, res) => {
  })
 }
 const singleproduct = async (req, res) => {
- const product = await productModel.findById(req.params.id).populate('farmerId', 'name email')
+ const product = await productModel.findById(req.params.id).populate('farmerId', 'name email verified')
  res.json({
     success:true,
     message:"Product found successfully",

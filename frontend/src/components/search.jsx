@@ -1,6 +1,5 @@
 import { useContext, useState, useEffect } from "react";
 import { ShopContext } from "../contexts/shopcontext";
-import crossIcon from "../assets/frontend_assets/cross_icon.png";
 import { useLocation } from "react-router-dom";
 
 const Search = () => {
